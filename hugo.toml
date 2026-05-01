@@ -1,0 +1,37 @@
+baseURL = "https://Lopez-504.github.io/jorgelopezblog/"
+languageCode = "en-us"
+title = "Jorge's Blog"
+theme = "terminal"
+
+#paginate = 5			# deprecated
+[pagination]
+  pagerSize = 5
+
+[params]
+  contentTypeName = "posts"
+  themeColor = "orange"
+  showMenuItems = 2
+  fullWidthTheme = false
+  centerTheme = true
+
+[languages]
+  [languages.en]
+    title = "Jorge's Blog"
+    subtitle = "Physics, code, weather, and nocturnal thoughts"
+    keywords = ""
+    copyright = ""
+
+    [languages.en.params.logo]
+      logoText = "Jorge's Blog"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+
+      [[languages.en.menu.main]]
+        identifier = "posts"
+        name = "Posts"
+        url = "/posts"
