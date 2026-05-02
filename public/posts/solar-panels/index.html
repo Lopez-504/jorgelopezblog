@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/jorgelopezblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=jorgelopezblog/livereload" data-no-instant defer></script>
+  
+    <title>Solar Panels :: Jorge&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Notes Retomamos el proyecto
+En primer lugar, debemos genera un análisis de un año de datos
+Para ello debemos recordar cuál era el pipeline que desarrollamos el año pasado, el cual incluía estos pasos:
+Desde el log se realiza un split por ciclos (up &#43; down) y se reemplazan las comas por puntos Periodo de análisis: 25-10-2024 al 31-10-2024
+En la gráfica de conteo de datos por columna notar que existen varios clusters donde faltan datos, consultar acerca de esto a Omar, principalmente por la zona centrada en marzo y la zona entre julio y agosto Omar sospecha que la falta de datos de marzo se debe al cambio de acceso point donde se tuvo que reiniciar la estación varias veces. Podemos reportar 2 gráficas: cantidad de datos disponibles respecto a la fecha, e histograma para dar cuenta de que la cantidad de fechas donde se dispone con los 9 valores es considerablemente mayor que el resto de situaciones donde faltan datos. Idea para operativización: el modelo (a single script) recibe como input el log de las celdas y un rango de fechas (periodo de análisis), luego, se ejecutan stripFromTo.sh y splitCycles.sh, esto prepara un directorio con un archivo de texto correspodiente a cada ciclo (2 barridos). Luego estos archivos son leidos por code3.2.ipynb donde se calculan los parámetros fotovoltáicos de ambas celdas y se acoplan, en un pkl, a los parámetros meteorológicos de aws_UV (datetime-index)
+" />
+<meta name="keywords" content="kw1, kw2" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/jorgelopezblog/posts/solar-panels/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/custom.min.697518d87396191eb11ed8a6fd834401e3069b81dc66066200f1dfd63ae83e23.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/jorgelopezblog/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/jorgelopezblog/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Solar Panels">
+<meta property="og:description" content="Notes Retomamos el proyecto
+En primer lugar, debemos genera un análisis de un año de datos
+Para ello debemos recordar cuál era el pipeline que desarrollamos el año pasado, el cual incluía estos pasos:
+Desde el log se realiza un split por ciclos (up &#43; down) y se reemplazan las comas por puntos Periodo de análisis: 25-10-2024 al 31-10-2024
+En la gráfica de conteo de datos por columna notar que existen varios clusters donde faltan datos, consultar acerca de esto a Omar, principalmente por la zona centrada en marzo y la zona entre julio y agosto Omar sospecha que la falta de datos de marzo se debe al cambio de acceso point donde se tuvo que reiniciar la estación varias veces. Podemos reportar 2 gráficas: cantidad de datos disponibles respecto a la fecha, e histograma para dar cuenta de que la cantidad de fechas donde se dispone con los 9 valores es considerablemente mayor que el resto de situaciones donde faltan datos. Idea para operativización: el modelo (a single script) recibe como input el log de las celdas y un rango de fechas (periodo de análisis), luego, se ejecutan stripFromTo.sh y splitCycles.sh, esto prepara un directorio con un archivo de texto correspodiente a cada ciclo (2 barridos). Luego estos archivos son leidos por code3.2.ipynb donde se calculan los parámetros fotovoltáicos de ambas celdas y se acoplan, en un pkl, a los parámetros meteorológicos de aws_UV (datetime-index)
+" />
+<meta property="og:url" content="http://localhost:1313/jorgelopezblog/posts/solar-panels/" />
+<meta property="og:site_name" content="Jorge&#39;s Blog" />
+
+  
+  
+  <meta property="og:image" content="http://localhost:1313/jorgelopezblog/nat.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-05-02 04:32:43 -0400 -04" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Jorge&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/jorgelopezblog/about">About</a></li>
+        
+      
+        
+          <li><a href="/jorgelopezblog/posts">Posts</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/jorgelopezblog/about" >About</a></li>
+        
+      
+        
+          <li><a href="/jorgelopezblog/posts" >Posts</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/jorgelopezblog/posts/solar-panels/">Solar Panels</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-05-02</time><span class="post-author">Jorge L.</span><span class="post-reading-time">4 min read (706 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/jorgelopezblog/tags/energy/">Energy</a>&nbsp;
+      
+      #<a href="http://localhost:1313/jorgelopezblog/tags/"></a>&nbsp;
+      
+    </span>
+  
+  
+  <img src="http://localhost:1313/jorgelopezblog/nat.jpg"
+    class="post-cover"
+    alt="Solar Panels"
+    title="Cover Image" />
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="notes">Notes<a href="#notes" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>
+<p>Retomamos el proyecto</p>
+</li>
+<li>
+<p>En primer lugar, debemos genera un análisis de un año de datos</p>
+</li>
+<li>
+<p>Para ello debemos recordar cuál era el pipeline que desarrollamos el año pasado, el cual incluía estos pasos:</p>
+<ul>
+<li>Desde el <code>log</code> se realiza un split por ciclos (up + down) y se reemplazan las comas por puntos</li>
+<li></li>
+</ul>
+</li>
+<li>
+<p><strong>Periodo de análisis</strong>: 25-10-2024 al 31-10-2024</p>
+<ul>
+<li>En la gráfica de conteo de datos por columna notar que existen varios clusters donde faltan datos, consultar acerca de esto a Omar, principalmente por la zona centrada en marzo y la zona entre julio y agosto
+<ul>
+<li>Omar sospecha que la falta de datos de marzo se debe al cambio de acceso point donde se tuvo que reiniciar la estación varias veces.</li>
+</ul>
+</li>
+<li>Podemos reportar 2 gráficas: cantidad de datos disponibles respecto a la fecha, e histograma para dar cuenta de que la cantidad de fechas donde se dispone con los 9 valores es considerablemente mayor que el resto de situaciones donde faltan datos.</li>
+</ul>
+</li>
+<li>
+<p>Idea para <strong>operativización</strong>: el modelo (a single script) recibe como input el <code>log</code> de las celdas y un rango de fechas (periodo de análisis), luego, se ejecutan <code>stripFromTo.sh</code> y <code>splitCycles.sh</code>, esto prepara un directorio con un archivo de texto correspodiente a cada ciclo (2 barridos). Luego estos archivos son leidos por code3.2.ipynb donde se calculan los parámetros fotovoltáicos de ambas celdas y se acoplan, en un pkl, a los parámetros meteorológicos de aws_UV (datetime-index)</p>
+</li>
+<li>
+<p>Una buena noticia es que la gráfica semanal obtenida con este nuevo pipeline es idéntica a la que se obtuvo el año pasado</p>
+</li>
+</ul>
+<h1 id="gráficas">Gráficas<a href="#gráficas" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ol>
+<li>
+<p><strong>Muestra de una semana</strong>: Parámetros fotovoltáicos y condiciones meteorológicas (aws-UV) durante una semana seleccionada desde el periodo de estudio tal que sea representativa de las diferentes curvas de irradiancia presentes en dicho periodo</p>
+<ul>
+<li>Eficiencia, Irradiancia, Potencia (PCE), Temperatura, Humedad relativa</li>
+<li>Ambas celdas en la misma gráfica</li>
+</ul>
+</li>
+<li>
+<p><strong>Correlaciones</strong>: una gráfica para cada celda, mostrando las correlaciones entre parámetros meteorológicos y fotovoltáicos</p>
+<ul>
+<li>Quizás hacerla con seaborn, lo importante es que sea visualmente amigable, porque la info está contenida en el coeficiente de correlación</li>
+</ul>
+</li>
+<li>
+<p><strong>Degradación (i)</strong>: scatter potencia vs irradiancia con color indicando el tiempo (en meses)</p>
+<ul>
+<li>Esta gráfica no es tan directa de interpretar, quizás sería útil tener una gráfica adicional que muestre directamente la degradación en función del tiempo (para ello la siguiente gráfica)</li>
+</ul>
+</li>
+<li>
+<p><strong>Degradación (ii)</strong>: degradación de la celda en función del tiempo</p>
+<ul>
+<li>Una idea es usar el PCE máximo de cada día y normalizar respecto al valor inicial, donde suponemos que la celda no tiene degradación alguna
+<ul>
+<li>Notar que debemos aplicar alguna máscara o criterio adicional para así tomar en cuenta que no todos los días tienen la misma irradiancia máxima</li>
+</ul>
+</li>
+<li>Confirmar en la literatura</li>
+<li><a href="https://gemini.google.com/share/e1c5b0bd04c6">Gemini</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Meteorología diaria</strong>: Aggregates sobre las horas del día para visualizar el comportamiento promedio de la irradiancia, temperatura, humedad relativa y el PCE de ambas celdas</p>
+</li>
+</ol>
+<h1 id="pipeline">Pipeline<a href="#pipeline" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ol>
+<li>
+<p><code>log</code>: archivo de texto con la información de cada ciclo. Uno para cada celda</p>
+<ul>
+<li>Fecha y hora</li>
+<li>Sentido: up, down</li>
+<li>Voltaje y corriente</li>
+</ul>
+</li>
+<li>
+<p><code>stripFromTo.sh</code>: Genera un archivo de texto con el mismo formato de <code>log</code> pero entre las 2 fechas que son los argumento de este script</p>
+</li>
+<li>
+<p><code>SplitCycles.sh</code>: Genera archivos independientes para cada ciclo (barridos up y down)</p>
+</li>
+<li>
+<p><code>celda1_Ncliclos.pkl</code> y <code>celda2_Ncliclos.pkl</code>: Contienen las variables fotovoltáicas (PV) correspondientes a los N ciclos del periodo de estudio, para cada celda individualmente. Más la radiación solar</p>
+<ul>
+<li><code>Voc_up</code>, <code>Jsc_up</code>, <code>JMax_up</code>, <code>Vmax_up</code>, <code>PCE_up</code>, <code>FF_up</code></li>
+<li><code>Voc_dw</code>, <code>Jsc_dw</code>, <code>Jmax_dw</code>, <code>Vmax_dw</code>, <code>PCE_dw</code>, <code>FF_dw</code></li>
+<li><code>HI</code></li>
+</ul>
+</li>
+<li>
+<p><code>CombinedCells.pkl</code>: Merge entre las variables fotovoltáicas de <strong>ambas celdas</strong>, más una columna para la <strong>radiación solar</strong></p>
+<ul>
+<li>Radiación solar en unidades $10\cdot W/m^2=\text{mW}/cm^2$</li>
+<li>date UTC-3</li>
+<li>$\Delta T=$ 10min</li>
+<li>Para un mismo ciclo, hay 20s de diferencia entre cada celda</li>
+</ul>
+</li>
+<li>
+<p><code>Met-PV_params.pkl</code>: Generado a partir de un merge entre la data de la estación y <code>CombinedCells.pkl</code></p>
+<ul>
+<li>Este es un merge por índice (fecha y hora) más cercano</li>
+<li><code>Voc_up</code>, <code>Jsc_up</code>, <code>JMax_up</code>, <code>Vmax_up</code>, <code>PCE_up</code>, <code>FF_up</code></li>
+<li><code>Voc_dw</code>, <code>Jsc_dw</code>, <code>Jmax_dw</code>, <code>Vmax_dw</code>, <code>PCE_dw</code>, <code>FF_dw</code></li>
+<li><code>HI</code></li>
+<li><code>SolarRad</code>, <code>Temperature</code>, <code>rh</code>, <code>DewPoint</code>, <code>WindDir</code>, <code>WindSpeed</code>, <code>GustSpeed</code>, <code>Pressure</code>, <code>Rain</code></li>
+</ul>
+</li>
+<li>
+<p><code>PlotMaker.ipynb</code>: Genera gráficas a partir del archivo <code>Met-PV_params.pkl</code></p>
+</li>
+</ol>
+<p><!-- raw HTML omitted -->Notes<!-- raw HTML omitted -->:</p>
+<ul>
+<li>Los timestamps de las celdas están en UTC-3, pero la estación está en UTC
+<ul>
+<li>En pandas tienes index que son UTC-aware y otros UTC-naive, incompatibles</li>
+</ul>
+</li>
+<li>Recuerda que en mis códigos estamos trabajando la irradiancia en mW/cm^2</li>
+</ul>
+<h1 id="website">Website<a href="#website" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li><a href="https://www.overleaf.com/project/69e12df80089406c7207e62b">OverleafProject</a></li>
+<li>Build website with react</li>
+</ul>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h"></span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="http://localhost:1313/jorgelopezblog/posts/cluster-files-illumina/" class="button inline prev">
+        &lt; [<span class="button__text">Cluster Files Illumina</span>]
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="http://localhost:1313/jorgelopezblog/posts/weather-stations-network/" class="button inline next">
+         [<span class="button__text">Weather Stations Network</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/jorgelopezblog/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

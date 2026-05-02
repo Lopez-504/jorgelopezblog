@@ -5,11 +5,34 @@ title = 'index title'
 framed = true
 +++
 
-# Hello there!
+# Hello there 𓏲ּ𝄢
 
-My name is Radek and I’m the author of this theme. I made it to help you present your ideas easier.
+Welcome to my personal blog. Now given that my personal life is quite boring, my post will be mostly about projects: academic and 
 
-If you want to change the default color scheme, please visit [**Terminal.css**](https://panr.github.io/terminal-css/) and generate your own.
+## Me
 
-Below a framed linked image
-[![Terminal.css Preview](/hugo-theme-terminal-demo/img/terminal-css.png)](https://panr.github.io/terminal-css/)
+➤ I love **music**, **physics**, **philosophy** and **movies**  
+
+➤ I have a **BSc. in Physics** with Minor in **Scientific Computing**. I acquired a solid background in **mathematics**, **physics** and **programming**. Cultivated, through sustained practical experience, a robust skill set in **machine learning** applied to **atmospheric sciences** and **cosmology**, grounded in a solid theoretical understanding of **artificial intelligence**. 
+
+➤ I mostly work on numerical simulations. Two main areas:
+
+1. Light pollution -> `Illumina` 
+2. Cosmology, structure formation  -> `EinsteinToolkit`
+
+➤ Lately I've been learning web develepment to document and show the results of my investigations. Here are two example webpages:
+
+[![alt](/jorgelopezblog/remci_logo.png "caption=REMCI-UV 🌍 | width=130px")](https://lopez-504.github.io/REMCI-UV/)
+[![alt](/jorgelopezblog/seasonalSet.png "caption=Simulations 🌍 | width=160px")](https://lopez-504.github.io/simulations/)
+ 
+    
+    
+# This blog 🌍 
+
+- Below you'll find a list of the posts in this blog. Have fun :)
+
+˖
+ 
+
+⊹ ࣪﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹
+     

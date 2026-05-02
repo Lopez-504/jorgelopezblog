@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Weather on Jorge&#39;s Blog</title>
+    <link>http://localhost:1313/jorgelopezblog/tags/weather/</link>
+    <description>Recent content in Weather on Jorge&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 May 2026 19:47:58 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/jorgelopezblog/tags/weather/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weather Stations Network</title>
+      <link>http://localhost:1313/jorgelopezblog/posts/weather-stations-network/</link>
+      <pubDate>Fri, 01 May 2026 19:47:58 -0400</pubDate>
+      <guid>http://localhost:1313/jorgelopezblog/posts/weather-stations-network/</guid>
+      <description>&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We build a webpage to allow live and open access to all the data from our 3 aws&lt;/li&gt;&#xA;&lt;li&gt;Here we only develop the frontend and propose a code for data analysis, Edgar is currently working on the database and the compitibility issues that may arise from utilizing different brands of aws&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;database&#34;&gt;Database&lt;/h1&gt;&#xA;&lt;p&gt;Edgar&amp;rsquo;s working on it&amp;hellip;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;webpage&#34;&gt;Webpage&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;I think I&amp;rsquo;ll use React for the frontend, since we need a dynamic site&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

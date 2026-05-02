@@ -16,10 +16,6 @@ hideComments = false
 
 ## test
 
-- why
-- doesn't
-- it
-- get 
-- better 
-- with 
-- time
+- why doesn't it
+- get better 
+- with time

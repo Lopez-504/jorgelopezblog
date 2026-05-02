@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/jorgelopezblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=jorgelopezblog/livereload" data-no-instant defer></script>
+  
+    <title>Weather Stations Network :: Jorge&#39;s Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Abstract We build a webpage to allow live and open access to all the data from our 3 aws Here we only develop the frontend and propose a code for data analysis, Edgar is currently working on the database and the compitibility issues that may arise from utilizing different brands of aws Database Edgar&rsquo;s working on it&hellip;
+Webpage I think I&rsquo;ll use React for the frontend, since we need a dynamic site
+" />
+<meta name="keywords" content="Weather, Network" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/jorgelopezblog/posts/weather-stations-network/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/custom.min.697518d87396191eb11ed8a6fd834401e3069b81dc66066200f1dfd63ae83e23.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/jorgelopezblog/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/jorgelopezblog/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Weather Stations Network">
+<meta property="og:description" content="Abstract We build a webpage to allow live and open access to all the data from our 3 aws Here we only develop the frontend and propose a code for data analysis, Edgar is currently working on the database and the compitibility issues that may arise from utilizing different brands of aws Database Edgar&rsquo;s working on it&hellip;
+Webpage I think I&rsquo;ll use React for the frontend, since we need a dynamic site
+" />
+<meta property="og:url" content="http://localhost:1313/jorgelopezblog/posts/weather-stations-network/" />
+<meta property="og:site_name" content="Jorge&#39;s Blog" />
+
+  
+  
+  <meta property="og:image" content="http://localhost:1313/jorgelopezblog/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-05-02 04:32:28 -0400 -04" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Jorge&#39;s Blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/jorgelopezblog/about">About</a></li>
+        
+      
+        
+          <li><a href="/jorgelopezblog/posts">Posts</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/jorgelopezblog/about" >About</a></li>
+        
+      
+        
+          <li><a href="/jorgelopezblog/posts" >Posts</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/jorgelopezblog/posts/weather-stations-network/">Weather Stations Network</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-05-02</time><span class="post-author">Jorge L.</span><span class="post-reading-time">10 min read (2118 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/jorgelopezblog/tags/weather/">Weather</a>&nbsp;
+      
+      #<a href="http://localhost:1313/jorgelopezblog/tags/forecast/">Forecast</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="abstract">Abstract<a href="#abstract" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>We build a webpage to allow live and open access to all the data from our 3 aws</li>
+<li>Here we only develop the frontend and propose a code for data analysis, Edgar is currently working on the database and the compitibility issues that may arise from utilizing different brands of aws</li>
+</ul>
+<h1 id="database">Database<a href="#database" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Edgar&rsquo;s working on it&hellip;</p>
+<ul>
+<li></li>
+</ul>
+<h1 id="webpage">Webpage<a href="#webpage" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>
+<p>I think I&rsquo;ll use React for the frontend, since we need a dynamic site</p>
+</li>
+<li>
+<p><a href="https://agrometeorologia.cl/">Example 1</a></p>
+</li>
+<li>
+<p><a href="https://ifa.uv.cl/pronostico/valpo/es/valparaiso">Example 2</a></p>
+<ul>
+<li>Hopefully we can upgrade this website</li>
+<li>Check out these animations too <a href="https://ifa.uv.cl/pronostico/valpo/es/exp">link</a></li>
+<li>Here&rsquo;s the website that comes with one of the AWS <a href="https://www.licor.cloud/dashboards/public/edb4ddea-8f4d-4401-8479-1535407cc17a/false?filters=%7b%22davra-timeselector%22:%7b%22type%22:%22relative%22,%22unit%22:%22minutes%22,%22value%22:30,%22live%22:false%7d%7d">link</a>
+<ul>
+<li>Note: use the same icons in our site</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.ceazamet.cl/index.php?pag=mod_mapa&amp;p_cod=ceazamet">Example 3</a></p>
+</li>
+<li>
+<p><a href="https://speclib.jpl.nasa.gov/download">Example 4</a> ECOSTRESS Spectral Library</p>
+</li>
+<li>
+<p><a href="https://github.com/mui/material-ui/tree/v7.3.9/docs/data/material/getting-started/templates/dashboard">React template</a></p>
+<ul>
+<li><input disabled="" type="checkbox"> play around with it</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Complete the <a href="https://react.dev/learn/tutorial-tic-tac-toe">Tic-Tac-Toe</a> and check <a href="https://react.dev/learn/adding-interactivity">interactivity</a></p>
+</li>
+<li>
+<p>Maybe these components could come in handy: <a href="https://ui.shadcn.com/docs/components/radix/combobox">link</a></p>
+</li>
+<li>
+<p>Requirements:</p>
+<ol>
+<li>Map showing the location of each AWS (left)</li>
+<li>Plots showing the current trends of the most important variables (right)
+<ul>
+<li>Similar to INIA</li>
+</ul>
+</li>
+<li>Be able to easily dowload data
+<ul>
+<li>Specify variable and time interval</li>
+<li>Choose format (csv, pkl, txt)</li>
+</ul>
+</li>
+<li>Be able to download the plots the user creates</li>
+<li>Update itself every 5 or 10 minutes</li>
+</ol>
+</li>
+</ul>
+<h2 id="plots-section">Plots section<a href="#plots-section" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>
+<p>Ideally, I&rsquo;d like to have a completely customizable plots with the following degrees of freedom:</p>
+<ol>
+<li>Station</li>
+<li>Variables
+<ul>
+<li>I think 4 should be plenty</li>
+<li>Colors</li>
+<li>Custom variable made from the original ones</li>
+</ul>
+</li>
+<li>Time interval</li>
+<li>Plot kind
+<ul>
+<li>Independent for each variable</li>
+</ul>
+</li>
+<li>Unit measure</li>
+<li>Style</li>
+</ol>
+</li>
+<li>
+<p>See Apache Echarts</p>
+<ul>
+<li>Make some neat animation to put in the corner or something</li>
+</ul>
+</li>
+</ul>
+<h1 id="tasks">Tasks<a href="#tasks" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> Add forest fires section</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Reesctructure the website</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Add a brief explanation at the beginning of each section</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Add a section Forecast section</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Move the export card to tge data section</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Remove the wind plot from the station section</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> make the foot shorter</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Add a Light Pollution section</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Check the <a href="https://www.earthdata.nasa.gov/data/instruments/viirs">VIIRS</a> nasa website, it&rsquo;s too cool</p>
+<ul>
+<li>I downloaded some data to my MSI</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Check <a href="https://cieloschile.cl/en/light-pollution/">cieloschile</a> for some inspiration on the educational/pedagogical part of our website</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Fix the plots and station gallery to save the state they&rsquo;re in and not change when the user changes sections</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Fix width of lightpollution section</p>
+<ul>
+<li>It was the css for the light-things&hellip; some <code>max-width</code> parameter</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Read and follow <a href="https://react.dev/learn/describing-the-ui">this</a> tutorial</p>
+</li>
+</ul>
+<h2 id="things">Things<a href="#things" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>HTML to JSX (the one used by React) <a href="https://transform.tools/html-to-jsx">link</a></li>
+<li><strong>CORS</strong>: Cross-Origin resource sharing
+<ul>
+<li>To allow files to talk to each other we need a server</li>
+</ul>
+</li>
+<li>Are the Pocuro and the Ciencias UV stations identical? See pictures</li>
+<li><strong>Hero section</strong>: the first, prominent visual block at the top of a webpage, designed to immediately grab attention, define the site&rsquo;s purpose, and guide users to take action.</li>
+</ul>
+<h3 id="backend-web-development-overview-video">Backend web development (overview video)<a href="#backend-web-development-overview-video" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li><strong>Website</strong> = frontend + backend</li>
+<li><strong>Frontend</strong>: visual stuff</li>
+<li><strong>Backend</strong>: what saves and manages data</li>
+<li>The <strong>client</strong> sends messages to the <strong>server</strong>
+<ul>
+<li>By default, computers can&rsquo;t receive messages form other computers, we need to program them into servers. This is done with a <strong>backend programming language</strong> (e.g., almost any programming language)</li>
+<li>Now using a backend programming language is quite cumbersome so there are 2 tools that helps us:
+<ul>
+<li><strong>Backend framework</strong>: building our server is easier and requires a lot less code
+<ul>
+<li>Examples: ExpressJS (JavaScript), Django (Python), Rails (Ruby), Spring (Java)</li>
+</ul>
+</li>
+<li><strong>Package manager</strong>: helps us install and manage our packages, pieces of code that perform common task and we reuse from other people.
+<ul>
+<li>Example: npm (JavaScript), pip (Python), bundle (Ruby), Maven (Java)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We also need a place to store our data: a <strong>database</strong>. This usually runs on a different computer than the server
+<ul>
+<li>Most popular ones: MySQL, PostgreSQL, MongoDB</li>
+</ul>
+</li>
+<li>Frontend -&gt; WWW-&gt; Server -&gt; Database -&gt; Server -&gt; WWW -&gt; Fronend</li>
+<li>Request-Response cycle:
+<ul>
+<li><strong>Request</strong>: Message sent from the frontend to the backend</li>
+<li><strong>Response</strong>: Message sent from the backend to the frontend</li>
+</ul>
+</li>
+</ul>
+<h4 id="requests">Requests<a href="#requests" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<p>Parts: type of the request, domain name and URL path</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">POST</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">amazon</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">orders</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s2">&#34;order&#34;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;037d0156&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;name&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Adidas Shoes&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;quantity&#34;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;id&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;994c97a1&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;name&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Amazon Essentials Socks&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s2">&#34;quantity&#34;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s2">&#34;paymentMethod&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;creditCard1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s2">&#34;deliveryAddress&#34;</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;address1&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>The domain name <code>amazon.com</code> makes sure the request get redirected to the correct server</p>
+</li>
+<li>
+<p>The type <code>POST</code> and the URL path <code>/orders</code> <strong>identify what kind of request this is</strong>, and in the backend we can configure what types of request are allowed and how they should be handled</p>
+<ul>
+<li>For example in this case we could allow a POST &lsquo;/orders&rsquo; resquest and whenever we get one we will create a new order and save it in our database</li>
+<li>Another examples would be a GET &lsquo;/orders&rsquo; or DELETE &lsquo;/orders&rsquo;</li>
+<li>Examples of types: there&rsquo;s a finite number
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>PATCH</li>
+<li>DELETE</li>
+<li>HEAD</li>
+</ul>
+</li>
+<li>The URL path can be anything</li>
+<li>All the different types or requests that the backend allows is called an <strong>API</strong> (Application Programming Interface)</li>
+</ul>
+</li>
+<li>
+<p>We have a naming convention for our requests, for this example we&rsquo;re using <strong>REST</strong> (REpresentational State Transfer)</p>
+</li>
+<li>
+<p>In REST the types have meaning, e.g., POST means to create something, GET to get something and so on. If an API uses the REST convention it&rsquo;s called a REST API</p>
+<ul>
+<li>Rest is by far the most common convention but there are others like GraphQL (uses POST /graphQL for all requests), RPC (Remote Procedure Call) which uses POST and more detailed URL paths (e.g., /createOrder, /getOrderHistory).</li>
+</ul>
+</li>
+</ul>
+<h4 id="infrastructure">Infrastructure<a href="#infrastructure" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Instead of buying computers and turning them into servers, nowadays companies rent computers from a <strong>Cloud Computer Company</strong>
+<ul>
+<li>The biggest ones are AWS (Amazon Web Services), GCP (Google Cloud Platform) and Microsoft Azure</li>
+<li>Also known as IaaS (Infrastructure as a Service)</li>
+</ul>
+</li>
+<li>These big companies divide their massive computers into <strong>virtual machines</strong> and we rent one of those virtual machines to run our backend and another one to run our database
+<ul>
+<li>In case one virtual machines is not enough to handle the amount of requests our website is receiving, we can rent more virtual machines (VMs) to run the same backend and also set up a <strong>load balancer</strong> to distribute requests evenly across our VMs
+<ul>
+<li>This is particularly useful during holiday season when the internet traffic rises</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>But creating and setting up virtual machines is not a fast and easy job, that&rsquo;s why these cloud computing companies offer another service called <strong>PaaS</strong> (Platform as a Service)
+<ul>
+<li>A Paas allows us to just upload our backend code and it will take care of setting up all the necessary VMs and load balancer for us.
+<ul>
+<li>The most popular ones are:
+<ul>
+<li>Elastic Beanstalk (AWS)</li>
+<li>App Engine (GCP)</li>
+<li>App service (Microsoft Azure)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="microservices">Microservices<a href="#microservices" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>
+<p>Usually the processes involved in a website require several actions: email confirmations, adding credit card, sending some code, etc; so it&rsquo;s wiser to split this up into smaller more simple processes (i.e., microservices)</p>
+<ul>
+<li>This microservices are like mini-backends and they can even be written in different backend programming languages and have they&rsquo;re own database</li>
+<li>This keeps our code base smaller and more focused</li>
+</ul>
+</li>
+<li>
+<p>For example <strong>Twilio</strong> offers an email service (microservice), which is a backend and API for sending emails, then we&rsquo;d just need to send a request from our backend to Twilio&rsquo;s backend</p>
+<ul>
+<li>When a company provides a backend and an API that outside applications (us) can use, this is called a SaaS (Software as a Service)</li>
+<li>Pretty much everything we might need on our website is currently being offered by some company as a SaaS</li>
+</ul>
+</li>
+<li>
+<p>Foundations of Cloud Computing:</p>
+<ol>
+<li>IaaS</li>
+<li>PaaS</li>
+<li>SaaS</li>
+</ol>
+</li>
+<li>
+<p><strong>Primary Databases</strong> are the ones we use by default for our website, but if we want to allow users to upload files, we might need another one like blob storage AWS S3 and CDN (AWS Cloudfront) to store and upload user&rsquo;s files. Or if we want text search, our primary&rsquo;s are quite slow at it so we would bring a search database like Elasticsearch. If we&rsquo;re getting a lot of traffic we could add a Cache (redis) to improve performance. If we want to schedule tasks for the future we&rsquo;d use a job queue like <strong>RabbitMQ</strong>.</p>
+</li>
+<li>
+<p>If we&rsquo;re doing data science we don&rsquo;t want to do the data anaylis using our primary database which is busy running our website, instead we&rsquo;d copy all of our data into an analytical database like <strong>Snowflake</strong></p>
+</li>
+<li>
+<p>And there are tons of other technologies out there that might fit our specifc needs</p>
+</li>
+</ul>
+<h3 id="frontend">Frontend<a href="#frontend" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><a href="https://www.youtube.com/watch?v=WG5ikvJ2TKA&amp;t=23s">link</a></p>
+<ul>
+<li>HTML: HyperTextMarkupLanguage
+<ul>
+<li>We use HTML to add content to our webpage, just raw content.</li>
+<li>HTML -&gt; What to display our content</li>
+</ul>
+</li>
+<li>CSS: Cascading Style Sheets
+<ul>
+<li>We use CSS to style our webpage</li>
+<li>CSS -&gt; How to display our content</li>
+</ul>
+</li>
+</ul>
+<h4 id="javascript">JavaScript<a href="#javascript" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>JavaScript: HTML and CSS only display things, but JS makes our webpage <strong>interactive</strong>
+<ul>
+<li>The most important feature of JS is the <strong>Document Object Model</strong> (DOM), it allows JS to make changes in our webpage</li>
+</ul>
+</li>
+<li>But using the DOM directly is cumbersome, that&rsquo;s why we use a <strong>JS framework</strong>.
+<ul>
+<li>Popular ones: ReactJS, Angular, VueJS</li>
+</ul>
+</li>
+<li>JS as a programming language does not allow us to split up our code into different files, to do this we need a <strong>bundler</strong>
+<ul>
+<li>Popular ones: Webpack, Vite</li>
+<li>A bundle will take all of our files and bundle them into a single JS file that we can put on our website</li>
+</ul>
+</li>
+<li>Another tool that we use is a <strong>transpiler</strong>, which adds extra features to JS or enhance it
+<ul>
+<li>Popular one: Typescript</li>
+<li>It allow us to write an enhanced version of JS and then it handles the convertion back to JS (because browser like Chrome can only understand JS)</li>
+</ul>
+</li>
+<li>So to recap, the major technologies in the JS world are:
+<ul>
+<li>Language (JS of course)</li>
+<li>Framework (e.g., ReactJS, Angular, VueJS)</li>
+<li>Bundler (e.g., Webpack)</li>
+<li>Transpiler (e.g., Typescript)</li>
+</ul>
+</li>
+</ul>
+<h4 id="css">CSS<a href="#css" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>CSS has similar problems as JS, namely:
+<ol>
+<li>We can&rsquo;t organize code into different files</li>
+<li>Missing useful features</li>
+</ol>
+<ul>
+<li>So we also use a <strong>bundler</strong> and a <strong>transpiler</strong> for CSS, this is called a <strong>preprocessor</strong>
+<ul>
+<li>preprocessor = bundler + transpiler</li>
+<li>The most popular one: <strong>Sass</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We also have CSS frameworks, a whole bunch of CSS codes that some else wrote and it helps us solve common problems, so it can save us a lot of time
+<ul>
+<li>The most popular one: <strong>Bootstrap</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="http">HTTP<a href="#http" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>How does the frontend communicate with the backend?</li>
+<li>JS has a feature called <strong>XMLHttpRequest</strong>. It let us send a message from the frontend to a URL which the backend is listening to (through the API, see backend concepts)</li>
+<li>Now this feature is quite old and nowadays we have new technologies like <code>axios-http</code> or <code>fetch API</code> to send messages to the backend-</li>
+</ul>
+<h3 id="react-concepts">React concepts<a href="#react-concepts" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ol>
+<li>Declarative</li>
+<li>Components</li>
+<li>Single Page</li>
+<li>JSX</li>
+<li>Vite + React</li>
+<li>States</li>
+</ol>
+<ul>
+<li>
+<p>When the browser receives an HTML it creates a DOM (Document Object Model), a tree-like structure that represents a website, and using JS we can change anything about this DOM</p>
+</li>
+<li>
+<p>The advantage of using React is that we&rsquo;re only concern with describing what the UI should look like and not every step of how to build it in the DOM (as we would usign JS)</p>
+<ul>
+<li>React &ndash;&gt; Resulting UI  (i.e., <strong>declarative</strong>) &ndash;&gt; Cleaner</li>
+<li>JS &ndash;&gt; Building steps  (i.e., <strong>imperative</strong>) &ndash;&gt; Messier</li>
+</ul>
+</li>
+<li>
+<p>A <strong>component</strong> is a reusable building block. It is a function that takes some properties (props) and returns the UI we want to render</p>
+</li>
+<li>
+<p>The syntax we use to write components is <strong>JSX</strong> (JavaScrip XML) which is kinda like JS + HTML</p>
+</li>
+<li>
+<p>In React we&rsquo;re only working with one HTML page (i.e., one <code>index.html</code>), and then this page will be updated dynamically by JS.</p>
+</li>
+<li>
+<p>One of the reasons React is so fast is that it&rsquo;s only updating the parts of that <code>index.html</code> that need to be updated</p>
+</li>
+<li>
+<p><strong>Vite</strong> is great for working with all sorts of technologies, specially React projects</p>
+</li>
+<li>
+<p>React <strong>states</strong> are data that can change over time, and when the data changes React updates the UI. Check this example of a button that increases a counter:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">App</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// counter is the current value 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// setCounter is a function used to change this value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">[</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">setCounter</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">increaseCounterHandler</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setCounter</span><span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">	  <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">counter</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span></span><span class="line"><span class="cl">	  <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">increaseCounterHandler</span><span class="p">}</span><span class="o">&gt;</span> <span class="nx">click</span> <span class="nx">me</span><span class="o">!</span> <span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>React hooks: like libraries or functions from libraries? read documentation</li>
+</ul>
+<h3 id="js-needed-before-react">JS needed before React<a href="#js-needed-before-react" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="redux">REDUX<a href="#redux" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li><strong>Redux</strong> is a predictable state management library for JS apps, primarily used with React</li>
+<li><strong>Reduc toolkit</strong>: tools and conventions that simplify the development of Reduc apps by reducing boilerplate. It&rsquo;s design to address common painpoints in React development
+<ul>
+<li>boilerplate: standardized, reusable text or code that can be inserted into documents or programs with little or no change</li>
+</ul>
+</li>
+<li>To fully understand this tool u need to have some level of understanding of hooks and states</li>
+</ul>
+<h1 id="tutorials">Tutorials<a href="#tutorials" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Work on these, learn and update to GitHub so the world can see!</p>
+<h2 id="build-js-calculator">Build JS calculator<a href="#build-js-calculator" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p><a href="https://www.youtube.com/watch?v=I5kj-YsmWjM&amp;t=354s">link</a></p>
+<ul>
+<li></li>
+</ul>
+<h2 id="buld-react-tic-tac-toe">Buld React Tic-Tac-Toe<a href="#buld-react-tic-tac-toe" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p><a href="https://react.dev/learn/tutorial-tic-tac-toe">link</a></p>
+<ul>
+<li></li>
+</ul>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h"></span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="http://localhost:1313/jorgelopezblog/posts/solar-panels/" class="button inline prev">
+        &lt; [<span class="button__text">Solar Panels</span>]
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="http://localhost:1313/jorgelopezblog/posts/illumina-documentation/" class="button inline next">
+         [<span class="button__text">Illumina Documentation</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/jorgelopezblog/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

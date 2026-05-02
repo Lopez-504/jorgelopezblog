@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Energy on Jorge&#39;s Blog</title>
+    <link>http://localhost:1313/jorgelopezblog/tags/energy/</link>
+    <description>Recent content in Energy on Jorge&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 02 May 2026 04:32:43 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/jorgelopezblog/tags/energy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solar Panels</title>
+      <link>http://localhost:1313/jorgelopezblog/posts/solar-panels/</link>
+      <pubDate>Sat, 02 May 2026 04:32:43 -0400</pubDate>
+      <guid>http://localhost:1313/jorgelopezblog/posts/solar-panels/</guid>
+      <description>&lt;h1 id=&#34;notes&#34;&gt;Notes&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Retomamos el proyecto&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;En primer lugar, debemos genera un análisis de un año de datos&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Para ello debemos recordar cuál era el pipeline que desarrollamos el año pasado, el cual incluía estos pasos:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Desde el &lt;code&gt;log&lt;/code&gt; se realiza un split por ciclos (up + down) y se reemplazan las comas por puntos&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Periodo de análisis&lt;/strong&gt;: 25-10-2024 al 31-10-2024&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;En la gráfica de conteo de datos por columna notar que existen varios clusters donde faltan datos, consultar acerca de esto a Omar, principalmente por la zona centrada en marzo y la zona entre julio y agosto&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Omar sospecha que la falta de datos de marzo se debe al cambio de acceso point donde se tuvo que reiniciar la estación varias veces.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Podemos reportar 2 gráficas: cantidad de datos disponibles respecto a la fecha, e histograma para dar cuenta de que la cantidad de fechas donde se dispone con los 9 valores es considerablemente mayor que el resto de situaciones donde faltan datos.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Idea para &lt;strong&gt;operativización&lt;/strong&gt;: el modelo (a single script) recibe como input el &lt;code&gt;log&lt;/code&gt; de las celdas y un rango de fechas (periodo de análisis), luego, se ejecutan &lt;code&gt;stripFromTo.sh&lt;/code&gt; y &lt;code&gt;splitCycles.sh&lt;/code&gt;, esto prepara un directorio con un archivo de texto correspodiente a cada ciclo (2 barridos). Luego estos archivos son leidos por code3.2.ipynb donde se calculan los parámetros fotovoltáicos de ambas celdas y se acoplan, en un pkl, a los parámetros meteorológicos de aws_UV (datetime-index)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

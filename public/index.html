@@ -19,7 +19,7 @@
 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/custom.min.2913c66c64d7fb5f637ba27832b1a9acc617de3a5fe647876c511fb0c48e18f5.css">
+  <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/custom.min.697518d87396191eb11ed8a6fd834401e3069b81dc66066200f1dfd63ae83e23.css">
 
   
   <link rel="stylesheet" href="http://localhost:1313/jorgelopezblog/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
@@ -166,17 +166,37 @@
     
   
     <div class="index-content framed">
-      <h1 id="hello-there">Hello there!</h1>
-<p>My name is Radek and I’m the author of this theme. I made it to help you present your ideas easier.</p>
-<p>If you want to change the default color scheme, please visit <a href="https://panr.github.io/terminal-css/"><strong>Terminal.css</strong></a> and generate your own.</p>
-<p>Below a framed linked image
-<a href="https://panr.github.io/terminal-css/">
+      <h1 id="hello-there-𓏲">Hello there 𓏲ּ𝄢</h1>
+<p>Welcome to my personal blog. Now given that my personal life is quite boring, my post will be mostly about projects: academic and</p>
+<h2 id="me">Me</h2>
+<p>➤ I love <strong>music</strong>, <strong>physics</strong>, <strong>philosophy</strong> and <strong>movies</strong></p>
+<p>➤ I have a <strong>BSc. in Physics</strong> with Minor in <strong>Scientific Computing</strong>. I acquired a solid background in <strong>mathematics</strong>, <strong>physics</strong> and <strong>programming</strong>. Cultivated, through sustained practical experience, a robust skill set in <strong>machine learning</strong> applied to <strong>atmospheric sciences</strong> and <strong>cosmology</strong>, grounded in a solid theoretical understanding of <strong>artificial intelligence</strong>.</p>
+<p>➤ I mostly work on numerical simulations. Two main areas:</p>
+<ol>
+<li>Light pollution -&gt; <code>Illumina</code></li>
+<li>Cosmology, structure formation  -&gt; <code>EinsteinToolkit</code></li>
+</ol>
+<p>➤ Lately I&rsquo;ve been learning web develepment to document and show the results of my investigations. Here are two example webpages:</p>
+<p><a href="https://lopez-504.github.io/REMCI-UV/">
 <figure class="post-image"><img
-      src="/hugo-theme-terminal-demo/img/terminal-css.png"
-      alt="Terminal.css Preview"
+      src="/jorgelopezblog/remci_logo.png"
+      alt="alt"
       loading="lazy"
-      
-    ></figure></a></p>
+      style="max-width: 130px;"
+    ><figcaption>REMCI-UV 🌍</figcaption></figure></a>
+<a href="https://lopez-504.github.io/simulations/">
+<figure class="post-image"><img
+      src="/jorgelopezblog/seasonalSet.png"
+      alt="alt"
+      loading="lazy"
+      style="max-width: 160px;"
+    ><figcaption>Simulations 🌍</figcaption></figure></a></p>
+<h1 id="this-blog-">This blog 🌍</h1>
+<ul>
+<li>Below you&rsquo;ll find a list of the posts in this blog. Have fun :)</li>
+</ul>
+<p>˖</p>
+<p>⊹ ࣪﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖﹏𓊝﹏⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹</p>
 
     </div>
   
@@ -190,6 +210,628 @@
     
     
 
+    
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="http://localhost:1313/jorgelopezblog/posts/cluster-files-illumina/">Cluster Files Illumina</a>
+        </h2>
+
+        <div class="post-meta"><time class="post-date">2026-05-02</time></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/light-pollution/">Light-Pollution</a>&nbsp;
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/hpc/">HPC</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+        <div class="post-content">
+          
+            <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">---</span> <span class="nx">VIIRS</span> <span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_75</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N180W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060W_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">cf_cvg</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SVDNB_npp_20250601</span><span class="o">-</span><span class="mi">20250630_00</span><span class="nx">N060E_vcmslcfg_v10_c202507171500</span><span class="p">.</span><span class="nx">avg_rade9h</span><span class="p">.</span><span class="nx">tif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">---</span> <span class="nx">Lights</span> <span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">W_White</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">water</span><span class="p">.</span><span class="nx">aster</span>
+</span></span><span class="line"><span class="cl"><span class="nx">viirs</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">sqm</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">snow</span><span class="p">.</span><span class="nx">aster</span>
+</span></span><span class="line"><span class="cl"><span class="nx">scotopic</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">README</span>
+</span></span><span class="line"><span class="cl"><span class="nx">photopic</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">MV_MercuryVapor4302KLICA</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">M_MetalHalide</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">MH_MetalHalide</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">LPS_Dline</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">L_LPS_Dline</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">JC_V</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">JC_U</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">JC_R</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">JC_I</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">JC_B</span><span class="p">.</span><span class="nx">dat</span>
+</span></span><span class="line"><span class="cl"><span class="nx">HPS_Helios</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">H_HPS_Helios</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">grass</span><span class="p">.</span><span class="nx">aster</span>
+</span></span><span class="line"><span class="cl"><span class="nx">F_Fluorescent_4kK</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="nx">asphalt</span><span class="p">.</span><span class="nx">aster</span>
+</span></span><span class="line"><span class="cl"><span class="nx">AMBR_LED</span><span class="o">-</span><span class="nx">ambree</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">50_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">4</span><span class="nx">LED_LED</span><span class="o">-</span><span class="mi">4000</span><span class="nx">K</span><span class="o">-</span><span class="nx">Philips</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span><span class="nx">LED_LED</span><span class="o">-</span><span class="mi">3000</span><span class="nx">K</span><span class="o">-</span><span class="nx">GE</span><span class="p">.</span><span class="nx">spct</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">20_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">15_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">10_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0_</span><span class="nx">pcUPLIGHT</span><span class="p">.</span><span class="nx">lop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">---</span> <span class="nx">SRTM</span> <span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s27w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S27W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s27w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s26w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s26w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S26W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s26w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s25w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s25w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s25w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W068</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W068</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W068</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S25W068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s25w068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s24w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s24w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s24w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W068</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W068</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W068</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s24w068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W067</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W067</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W067</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S24W067</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s24w067</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s23w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s23w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s23w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W068</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W068</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W068</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s23w068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W067</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W067</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W067</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S23W067</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s23w067</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W071</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W071</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W071</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s22w071</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s22w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s22w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W068</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W068</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W068</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S22W068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s22w068</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W070</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W070</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W070</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s21w070</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W069</span><span class="p">.</span><span class="nx">SRTMGL3S</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W069</span><span class="p">.</span><span class="nx">SRTMGL3</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W069</span><span class="p">.</span><span class="nx">SRTMGL1</span><span class="p">.</span><span class="nx">hgt</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">S21W069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s21w069</span><span class="p">.</span><span class="nx">hgt</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s27w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s27w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s26w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s26w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s26w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s25w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s25w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s25w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s25w068</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s24w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s24w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s24w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s24w068</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s24w067</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s23w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s23w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s23w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s23w068</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s23w067</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s22w071</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s22w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s22w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s22w068</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s21w070</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">NASADEM_HGT_s21w069</span><span class="p">.</span><span class="nx">zip</span>
+</span></span><span class="line"><span class="cl"><span class="nx">download</span><span class="p">.</span><span class="nx">sh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">---</span> <span class="nx">hydropolys</span> <span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">hydropolys</span><span class="p">.</span><span class="nx">zip</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="python-codes">Python codes</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="n">illumina</span><span class="p">)</span> <span class="p">[</span><span class="n">jlopez</span><span class="nd">@flare</span> <span class="n">sky</span><span class="p">]</span><span class="err">$</span> <span class="n">ls</span> <span class="n">illumina</span><span class="o">/</span><span class="n">illum</span><span class="o">/</span> <span class="o">-</span><span class="n">lsrh</span>
+</span></span><span class="line"><span class="cl"><span class="n">total</span> <span class="mi">156</span><span class="n">K</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">7.7</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">warp</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>  <span class="mf">2.1</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">street_orientation</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>  <span class="mf">5.7</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">SpectralPowerDistribution</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">16</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>   <span class="mi">14</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">pytools</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">2</span>  <span class="mf">4.0</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">__pycache__</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">3.9</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">OPAC</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">12</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>   <span class="mi">11</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">MultiScaleData</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>  <span class="mf">2.0</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>  <span class="mf">6.6</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">inventory</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">1.8</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">integrate</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">12</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">9.0</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">inputs</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>   <span class="mi">624</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">init</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>    <span class="mi">22</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">1.8</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">failed</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">6.6</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">extract</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">4.2</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">domain</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">2.9</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">convert</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">16</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>   <span class="mi">13</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">batches</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"><span class="mf">8.0</span><span class="n">K</span> <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span>  <span class="mf">7.1</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">AngularPowerDistribution</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">12</span><span class="n">K</span> <span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span>  <span class="mf">8.7</span><span class="n">K</span> <span class="n">Aug</span> <span class="mi">22</span>  <span class="mi">2025</span> <span class="n">alternate</span><span class="o">.</span><span class="n">py</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button inline" href="/jorgelopezblog/posts/cluster-files-illumina/">[]</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="http://localhost:1313/jorgelopezblog/posts/solar-panels/">Solar Panels</a>
+        </h2>
+
+        <div class="post-meta"><time class="post-date">2026-05-02</time><span class="post-author">Jorge L.</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/energy/">Energy</a>&nbsp;
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/"></a>&nbsp;
+            
+          </span>
+        
+
+        
+  <img src="http://localhost:1313/jorgelopezblog/nat.jpg"
+    class="post-cover"
+    alt="Solar Panels"
+    title="Cover Image" />
+
+
+        <div class="post-content">
+          
+            <h1 id="notes">Notes</h1>
+<ul>
+<li>
+<p>Retomamos el proyecto</p>
+</li>
+<li>
+<p>En primer lugar, debemos genera un análisis de un año de datos</p>
+</li>
+<li>
+<p>Para ello debemos recordar cuál era el pipeline que desarrollamos el año pasado, el cual incluía estos pasos:</p>
+<ul>
+<li>Desde el <code>log</code> se realiza un split por ciclos (up + down) y se reemplazan las comas por puntos</li>
+<li></li>
+</ul>
+</li>
+<li>
+<p><strong>Periodo de análisis</strong>: 25-10-2024 al 31-10-2024</p>
+<ul>
+<li>En la gráfica de conteo de datos por columna notar que existen varios clusters donde faltan datos, consultar acerca de esto a Omar, principalmente por la zona centrada en marzo y la zona entre julio y agosto
+<ul>
+<li>Omar sospecha que la falta de datos de marzo se debe al cambio de acceso point donde se tuvo que reiniciar la estación varias veces.</li>
+</ul>
+</li>
+<li>Podemos reportar 2 gráficas: cantidad de datos disponibles respecto a la fecha, e histograma para dar cuenta de que la cantidad de fechas donde se dispone con los 9 valores es considerablemente mayor que el resto de situaciones donde faltan datos.</li>
+</ul>
+</li>
+<li>
+<p>Idea para <strong>operativización</strong>: el modelo (a single script) recibe como input el <code>log</code> de las celdas y un rango de fechas (periodo de análisis), luego, se ejecutan <code>stripFromTo.sh</code> y <code>splitCycles.sh</code>, esto prepara un directorio con un archivo de texto correspodiente a cada ciclo (2 barridos). Luego estos archivos son leidos por code3.2.ipynb donde se calculan los parámetros fotovoltáicos de ambas celdas y se acoplan, en un pkl, a los parámetros meteorológicos de aws_UV (datetime-index)</p>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button inline" href="/jorgelopezblog/posts/solar-panels/">[]</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="http://localhost:1313/jorgelopezblog/posts/weather-stations-network/">Weather Stations Network</a>
+        </h2>
+
+        <div class="post-meta"><time class="post-date">2026-05-02</time><span class="post-author">Jorge L.</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/weather/">Weather</a>&nbsp;
+            
+            #<a href="http://localhost:1313/jorgelopezblog/tags/forecast/">Forecast</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+        <div class="post-content">
+          
+            <h1 id="abstract">Abstract</h1>
+<ul>
+<li>We build a webpage to allow live and open access to all the data from our 3 aws</li>
+<li>Here we only develop the frontend and propose a code for data analysis, Edgar is currently working on the database and the compitibility issues that may arise from utilizing different brands of aws</li>
+</ul>
+<h1 id="database">Database</h1>
+<p>Edgar&rsquo;s working on it&hellip;</p>
+<ul>
+<li></li>
+</ul>
+<h1 id="webpage">Webpage</h1>
+<ul>
+<li>
+<p>I think I&rsquo;ll use React for the frontend, since we need a dynamic site</p>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button inline" href="/jorgelopezblog/posts/weather-stations-network/">[]</a>
+          </div>
+        
+      </article>
     
       <article class="post on-list">
         <h2 class="post-title">
@@ -215,13 +857,9 @@
           
             <h2 id="test">test</h2>
 <ul>
-<li>why</li>
-<li>doesn&rsquo;t</li>
-<li>it</li>
-<li>get</li>
-<li>better</li>
-<li>with</li>
-<li>time</li>
+<li>why doesn&rsquo;t it</li>
+<li>get better</li>
+<li>with time</li>
 </ul>
           
         </div>
@@ -324,130 +962,15 @@
         
       </article>
     
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="http://localhost:1313/jorgelopezblog/posts/illumina-project/">Illumina Project</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2026-05-01</time><span class="post-author">Jorge L.</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/light-pollution/">Light pollution</a>&nbsp;
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/numerical-simualtions/">Numerical simualtions</a>&nbsp;
-            
-          </span>
-        
-
-        
-  <img src="http://localhost:1313/jorgelopezblog/seasonalSet.png"
-    class="post-cover"
-    alt="Illumina Project"
-    title="Cover Image" />
-
-
-        <div class="post-content">
-          
-            <h1 id="illumina-documentation">Illumina documentation</h1>
-<p>paste doc from my personal HP laptop</p>
-<h2 id="running-a-simulation">Running a simulation</h2>
-<h2 id="generate-plots">Generate plots</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">source</span> <span class="o">~/</span><span class="n">miniconda</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-</span></span><span class="line hl"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="n">illum</span><span class="p">)</span> <span class="n">python3</span> <span class="n">interp_plots</span><span class="o">.</span><span class="n">py</span>
-</span></span></code></pre></div><h2 id="add-results-to-website">Add results to website</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="ln">1</span><span class="cl">git add .
-</span></span><span class="line"><span class="ln">2</span><span class="cl">git commit -m <span class="s2">&#34;added new results&#34;</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">git push origin main
-</span></span><span class="line hl"><span class="ln">4</span><span class="cl">npm run deploy		    &lt;- very important
-</span></span></code></pre></div><p>Site should be ready within the next minute <a href="https://lopez-504.github.io/simulations/">here</a></p>
-
-          
-        </div>
-
-        
-      </article>
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="http://localhost:1313/jorgelopezblog/posts/codeblocks/">CodeBlocks</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2026-05-01</time><span class="post-author">Jorge L.</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/coding/">Coding</a>&nbsp;
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/syntax/">Syntax</a>&nbsp;
-            
-          </span>
-        
-
-        
-  <img src="http://localhost:1313/jorgelopezblog/nat.jpg"
-    class="post-cover"
-    alt="CodeBlocks"
-    title="Cover Image" />
-
-
-        <div class="post-content">
-          
-            <p>Showcase different code blocks, different highlights and programming languages</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/jorgelopezblog/posts/codeblocks/">[]</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="http://localhost:1313/jorgelopezblog/posts/first-post/">First Post</a>
-        </h2>
-
-        <div class="post-meta"><time class="post-date">2026-05-01</time><span class="post-author">Jorge L.</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/tag1/">tag1</a>&nbsp;
-            
-            #<a href="http://localhost:1313/jorgelopezblog/tags/tag2/">tag2</a>&nbsp;
-            
-          </span>
-        
-
-        
-  <img src="http://localhost:1313/jorgelopezblog/killua1short.jpg"
-    class="post-cover"
-    alt="First Post"
-    title="Cover Image" />
-
-
-        <div class="post-content">
-          
-            <p>description</p>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button inline" href="/jorgelopezblog/posts/first-post/">[]</a>
-          </div>
-        
-      </article>
-    
 
     <div class="pagination">
   <div class="pagination__buttons">
     
     
+    
+      <a href="/jorgelopezblog/page/2/" class="button inline next">
+        [<span class="button__text">Older posts</span>] &gt;
+      </a>
     
   </div>
 </div>
