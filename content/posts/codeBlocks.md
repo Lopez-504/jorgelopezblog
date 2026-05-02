@@ -19,6 +19,8 @@ ShowToc = true
 Check [Hugo official doc](https://gohugo.io/content-management/syntax-highlighting/)
 
 
+solve this path problem, below we're using: /jorgelopezblog/killua1short.jpg
+
 ![Killua](/jorgelopezblog/killua1short.jpg "caption=killua having a drink | width=340px")	
 
 
