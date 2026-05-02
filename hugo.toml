@@ -13,6 +13,7 @@ theme = "terminal"
   showMenuItems = 2
   fullWidthTheme = false
   centerTheme = true
+  customCSS = ["css/custom.css"]
 
 [languages]
   [languages.en]
@@ -35,3 +36,36 @@ theme = "terminal"
         identifier = "posts"
         name = "Posts"
         url = "/posts"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false      
+
+# There's a problem here: when I set noClasses = true, the
+# style = ashen works, but when noClasses = false, the 
+# I get the default style but also the title and copy btn
+# for the code block
+  
+  [markup.highlight]
+    noClasses = false		#allows title and copy btn
+    codeFences = true
+    guessSyntax = true
+    lineNos = true        
+    style = "ashen"		#not responding	
+    anchorLineNos = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNumbersInTable = true
+    tabWidth = 4
+    wrapperClass = 'highlight'
+    
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = true
+    startLevel = 2
+    
+  [markup.asciidocExt]
+    [markup.asciidocExt.attributes]
+      source-highlighter = 'ashen'  

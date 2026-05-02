@@ -1,0 +1,49 @@
+{{/* layouts/_default/_markup/render-image.html */}}
+{{/* We can improve on the zoom feature, but with JS. Check GPT */}}
+
+{{- $title := .Title | default "" -}}
+{{- $parts := split $title "|" -}}
+
+{{- $caption := "" -}}
+{{- $width := "" -}}
+{{- $zoom := "false" -}}
+
+{{- range $parts -}}
+  {{- $kv := split . "=" -}}
+  {{- if eq (len $kv) 2 -}}
+    {{- $key := index $kv 0 | strings.TrimSpace -}}
+    {{- $val := index $kv 1 | strings.TrimSpace -}}
+
+    {{- if eq $key "caption" -}}
+      {{- $caption = $val -}}
+    {{- else if eq $key "width" -}}
+      {{- $width = $val -}}
+    {{- else if eq $key "zoom" -}}
+      {{- $zoom = $val -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<figure class="post-image">
+  {{- if eq $zoom "true" -}}
+    <a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">
+      <img
+        src="{{ .Destination | safeURL }}"
+        alt="{{ .Text }}"
+        loading="lazy"
+        {{ with $width }}style="max-width: {{ . }};"{{ end }}
+      >
+    </a>
+  {{- else -}}
+    <img
+      src="{{ .Destination | safeURL }}"
+      alt="{{ .Text }}"
+      loading="lazy"
+      {{ with $width }}style="max-width: {{ . }};"{{ end }}
+    >
+  {{- end -}}
+
+  {{- with $caption -}}
+    <figcaption>{{ . }}</figcaption>
+  {{- end -}}
+</figure>
